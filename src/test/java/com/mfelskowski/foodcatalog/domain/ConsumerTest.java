@@ -15,33 +15,33 @@ public class ConsumerTest {
         catalog = new ProductCatalog();
     }
 
-    private void addHealthProductToCatalog() {
+    private void addHealthyProductToCatalog() {
         catalog.add(new Product(ProductType.ORZECHY_WLOSKIE, new Rating(10.0f, "Very good")));
     }
 
     @Test
     public void shouldFindProductsIfPresent() {
-        addHealthProductToCatalog();
+        addHealthyProductToCatalog();
 
-        Set<Product> products = catalog.findProducts(ProductType.ORZECHY_WLOSKIE);
+        Set<Product> products = catalog.findProductsByType(ProductType.ORZECHY_WLOSKIE);
 
         assertEquals(1, products.size());
     }
 
     @Test
     public void shouldNotFindProductsIfNotPresent() {
-        addHealthProductToCatalog();
+        addHealthyProductToCatalog();
 
-        Set<Product> products = catalog.findProducts(ProductType.FASOLA_CZERWONA);
+        Set<Product> products = catalog.findProductsByType(ProductType.FASOLA_CZERWONA);
 
         assertEquals(0, products.size());
     }
 
     @Test
     public void shouldFindProductWithDetailedRating() {
-        addHealthProductToCatalog();
+        addHealthyProductToCatalog();
 
-        Set<Product> products = catalog.findProducts(ProductType.ORZECHY_WLOSKIE);
+        Set<Product> products = catalog.findProductsByType(ProductType.ORZECHY_WLOSKIE);
 
         Rating rating = products.iterator().next().getRating();
         assertEquals(10.0f, rating.getScore(), 0.01f);

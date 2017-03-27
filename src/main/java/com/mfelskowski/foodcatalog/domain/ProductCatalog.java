@@ -15,7 +15,11 @@ public class ProductCatalog {
         return products.contains(product);
     }
 
-    public Set<Product> findProducts(final ProductType productType) {
+    public Set<Product> findProductsByType(final ProductType productType) {
         return products.stream().filter(p -> p.getType().equals(productType)).collect(Collectors.toSet());
+    }
+
+    public Set<Product> findProductsByName(String productName) {
+        return products.stream().filter(p -> p.getName().toString().toLowerCase().contains(productName.toLowerCase())).collect(Collectors.toSet());
     }
 }
